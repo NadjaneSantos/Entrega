@@ -1,0 +1,24 @@
+CREATE  TABLE pessoa (
+   nome VARCHAR(100) NOT NULL,
+   cpf VARCHAR(11) NOT NULL,
+   sexo VARCHAR(20) NOT NULL,
+   idade INT NOT NULL,
+   senha VARCHAR(10) NOT NULL,
+   PRIMARY KEY (cpf) 
+);
+
+CREATE TABLE endereco (
+   id INT NOT NULL,
+   numero INT NOT NULL,
+   rua VARCHAR(100) NOT NULL,
+   complemento VARCHAR(200) NOT NULL,
+   cpf_pessoa VARCHAR(11) NOT NULL,
+   PRIMARY KEY (id)
+);
+
+ALTER TABLE endereco
+ADD FOREIGN KEY (cpf_pessoa) 
+REFERENCES pessoa(cpf);
+
+CREATE SEQUENCE S_endereco 
+	MINVALUE 1 MAXVALUE 999999 INCREMENT BY 1 START WITH 1 ;

@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet name="primeicons/primeicons.css"
+		library="primefaces" />
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:panelGrid style="width: 50%">
+			<p:row>
+
+				<p:commandButton value="Atualizar Lista" update="@form"
+					actionListener="#{PessoaBean.pesquisar}" />
+
+				<p:commandButton value="Nova Pessoa"
+					actionListener="#{PessoaBean.abrirCRUDPessoa}" />
+			</p:row>
+		</p:panelGrid>
+		<p:panel header="Lista de Pessoas"
+			style="margin-bottom:5px; width: 100%">
+			<p:dataTable var="pessoa" value="#{PessoaBean.listaPessoas}">
+				<p:column headerText="Nome">
+					<h:outputText value="#{pessoa.nome}" />
+				</p:column>
+				<p:column headerText="CPF">
+					<h:outputText value="#{pessoa.cpf}" />
+				</p:column>
+				<p:column headerText="Idade">
+					<h:outputText value="#{pessoa.idade}" />
+				</p:column>
+				<p:column headerText="Sexo">
+					<h:outputText value="#{pessoa.sexo}" />
+				</p:column>
+				<p:column headerText="Editar" width="7%">
+					<p:commandButton icon="pi pi-pencil" action="#{PessoaBean.editar}">
+						<f:setPropertyActionListener target="#{PessoaBean.cpfSelecionado}"
+							value="#{pessoa.cpf}" />
+					</p:commandButton>
+				</p:column>
+				<p:column headerText="Remover" width="9%">
+					<p:commandButton icon="pi pi-times" update="@form"
+						action="#{PessoaBean.remover}">
+						<f:setPropertyActionListener target="#{PessoaBean.cpfSelecionado}"
+							value="#{pessoa.cpf}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+	</h:form>
+</h:body>
+</html>

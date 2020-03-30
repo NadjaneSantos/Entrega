@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Projeto Entrega</title>
+</h:head>
+<h:body>
+	<h:form id="Form">
+		<p:messages id="messages" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
+
+		<p:panel id="panel">
+			<p:dialog header="Projeto Entrega" modal="true" height="150"
+				visible="true">
+				<p:panelGrid columns="2">
+					<h:outputLabel value="Usuario :" />
+					<p:inputText value="#{LoginBean.usuarioInpt}" />
+					<h:outputLabel value="Senha :" />
+					<p:password value="#{LoginBean.senhaInpt}" />
+				</p:panelGrid>
+				<p:commandButton value="Entrar" action="#{LoginBean.entrar}"
+					update="@form" />
+				<p:commandButton value="Limpar" update="panel" process="@this"
+					style="margin-right:20px;" actionListener="LoginBean.limpar" />
+			</p:dialog>
+		</p:panel>
+	</h:form>
+</h:body>
+</html>

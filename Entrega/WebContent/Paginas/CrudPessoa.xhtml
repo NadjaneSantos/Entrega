@@ -1,0 +1,103 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<h:form id="form">
+		<p:messages id="messages" showDetail="true" closable="true" />
+		<p:panel id="crud">
+			<p:panelGrid>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Nome: " />
+					</p:column>
+					<p:column colspan="2">
+						<p:inputText value="#{PessoaBean.pessoa.nome}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="CPF: " />
+					</p:column>
+					<p:column colspan="2">
+						<p:inputText value="#{PessoaBean.pessoa.cpf}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Idade: " />
+					</p:column>
+					<p:column colspan="2">
+						<p:inputText value="#{PessoaBean.pessoa.idade}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Sexo: " />
+					</p:column>
+					<p:column colspan="2">
+						<p:selectOneMenu value="#{PessoaBean.pessoa.sexo}">
+							<f:selectItem itemLabel="" itemValue="" />
+							<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+							<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+						</p:selectOneMenu>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Senha: " />
+					</p:column>
+					<p:column colspan="2">
+						<p:inputText value="#{PessoaBean.pessoa.senha}" />
+					</p:column>
+				</p:row>
+
+				<p:row>
+					<p:column colspan="4">
+						<p:panel header="Enderecos">
+							<p:panelGrid columns="7">
+								<h:outputLabel value="Rua: " />
+								<p:inputText value="#{PessoaBean.endereco.rua}" />
+								<h:outputLabel value="Numero: " />
+								<p:inputText value="#{PessoaBean.endereco.numero}" />
+								<h:outputLabel value="Complemento: " />
+								<p:inputText value="#{PessoaBean.endereco.complemento}" />
+								<p:commandButton value="Adicionar" update="enderecos"
+									action="#{PessoaBean.addEndereco}" />
+							</p:panelGrid>
+							<p:dataTable id="enderecos" var="endereco"
+								value="#{PessoaBean.pessoa.enderecos}">
+								<p:column headerText="Rua">
+									<h:outputText value="#{endereco.rua}" />
+								</p:column>
+								<p:column headerText="Numero">
+									<h:outputText value="#{endereco.numero}" />
+								</p:column>
+								<p:column headerText="Complemento">
+									<h:outputText value="#{endereco.complemento}" />
+								</p:column>
+							</p:dataTable>
+						</p:panel>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+
+			<p:row>
+				<p:column colspan="2">
+					<p:commandButton value="Salvar" update="@form"
+						action="#{PessoaBean.salvar}" />
+				</p:column>
+				<p:column>
+					<p:commandButton value="Limpar" update="crud" process="@this"
+						actionListener="#{PessoaBean.limpar}" />
+					
+				</p:column>
+			</p:row>
+		</p:panel>
+	</h:form>
+</h:body>
+</html>
